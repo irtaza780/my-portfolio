@@ -1,0 +1,197 @@
+@import "tailwindcss";
+
+:root {
+  /* Base colors - these will be dynamically updated */
+  --primary-hue: 240;
+  --primary-saturation: 100%;
+  --primary-lightness: 50%;
+  
+  /* Light mode colors */
+  --background: hsl(0, 0%, 100%);
+  --foreground: hsl(0, 0%, 9%);
+  --card: hsl(0, 0%, 100%);
+  --card-foreground: hsl(0, 0%, 9%);
+  --popover: hsl(0, 0%, 100%);
+  --popover-foreground: hsl(0, 0%, 9%);
+  --primary: hsl(var(--primary-hue), var(--primary-saturation), var(--primary-lightness));
+  --primary-foreground: hsl(0, 0%, 98%);
+  --secondary: hsl(var(--primary-hue), 30%, 96%);
+  --secondary-foreground: hsl(var(--primary-hue), 5%, 15%);
+  --muted: hsl(var(--primary-hue), 5%, 96%);
+  --muted-foreground: hsl(var(--primary-hue), 5%, 45%);
+  --accent: hsl(var(--primary-hue), 30%, 94%);
+  --accent-foreground: hsl(var(--primary-hue), 5%, 15%);
+  --destructive: hsl(0, 84%, 60%);
+  --destructive-foreground: hsl(0, 0%, 98%);
+  --border: hsl(var(--primary-hue), 30%, 90%);
+  --input: hsl(var(--primary-hue), 30%, 90%);
+  --ring: hsl(var(--primary-hue), var(--primary-saturation), var(--primary-lightness));
+  --radius: 0.5rem;
+  
+  /* Glass effect variables */
+  --glass-bg: hsla(0, 0%, 100%, 0.1);
+  --glass-border: hsla(0, 0%, 100%, 0.2);
+  --glass-shadow: hsla(0, 0%, 0%, 0.1);
+}
+
+[data-theme="dark"] {
+  /* Dark mode colors - calculated from light mode */
+  --background: hsl(0, 0%, 4%);
+  --foreground: hsl(0, 0%, 98%);
+  --card: hsl(0, 0%, 4%);
+  --card-foreground: hsl(0, 0%, 98%);
+  --popover: hsl(0, 0%, 4%);
+  --popover-foreground: hsl(0, 0%, 98%);
+  --primary: hsl(var(--primary-hue), calc(var(--primary-saturation) * 0.8), calc(var(--primary-lightness) * 1.2));
+  --primary-foreground: hsl(0, 0%, 9%);
+  --secondary: hsl(var(--primary-hue), 10%, 8%);
+  --secondary-foreground: hsl(var(--primary-hue), 5%, 85%);
+  --muted: hsl(var(--primary-hue), 10%, 8%);
+  --muted-foreground: hsl(var(--primary-hue), 5%, 60%);
+  --accent: hsl(var(--primary-hue), 10%, 12%);
+  --accent-foreground: hsl(var(--primary-hue), 5%, 85%);
+  --destructive: hsl(0, 62%, 50%);
+  --destructive-foreground: hsl(0, 0%, 98%);
+  --border: hsl(var(--primary-hue), 10%, 15%);
+  --input: hsl(var(--primary-hue), 10%, 15%);
+  --ring: hsl(var(--primary-hue), calc(var(--primary-saturation) * 0.8), calc(var(--primary-lightness) * 1.2));
+  
+  /* Dark glass effect variables */
+  --glass-bg: hsla(0, 0%, 0%, 0.2);
+  --glass-border: hsla(0, 0%, 100%, 0.1);
+  --glass-shadow: hsla(0, 0%, 0%, 0.3);
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --font-sans: var(--font-nunito-sans);
+  --font-mono: var(--font-jetbrains-mono);
+}
+
+* {
+  border-color: var(--border);
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-nunito-sans), Arial, Helvetica, sans-serif;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* Glass morphism utilities */
+.glass {
+  background: var(--glass-bg);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid var(--glass-border);
+  box-shadow: 0 8px 32px var(--glass-shadow);
+}
+
+.glass-intense {
+  background: var(--glass-bg);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid var(--glass-border);
+  box-shadow: 0 12px 48px var(--glass-shadow);
+}
+
+.glass-card {
+  background: linear-gradient(135deg, 
+    hsla(var(--primary-hue), 10%, 98%, 0.1) 0%, 
+    hsla(var(--primary-hue), 10%, 95%, 0.05) 100%);
+  backdrop-filter: blur(15px);
+  -webkit-backdrop-filter: blur(15px);
+  border: 1px solid hsla(var(--primary-hue), 30%, 90%, 0.3);
+  box-shadow: 
+    0 8px 32px hsla(var(--primary-hue), 20%, 20%, 0.1),
+    inset 0 1px 0 hsla(0, 0%, 100%, 0.1);
+}
+
+[data-theme="dark"] .glass-card {
+  background: linear-gradient(135deg, 
+    hsla(var(--primary-hue), 10%, 10%, 0.2) 0%, 
+    hsla(var(--primary-hue), 10%, 5%, 0.1) 100%);
+  border: 1px solid hsla(var(--primary-hue), 20%, 30%, 0.2);
+  box-shadow: 
+    0 8px 32px hsla(0, 0%, 0%, 0.3),
+    inset 0 1px 0 hsla(0, 0%, 100%, 0.05);
+}
+
+.glass-section {
+  background: linear-gradient(135deg, 
+    hsla(var(--primary-hue), 5%, 98%, 0.05) 0%, 
+    hsla(var(--primary-hue), 5%, 95%, 0.02) 100%);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border: 1px solid hsla(var(--primary-hue), 20%, 90%, 0.2);
+}
+
+[data-theme="dark"] .glass-section {
+  background: linear-gradient(135deg, 
+    hsla(var(--primary-hue), 5%, 10%, 0.1) 0%, 
+    hsla(var(--primary-hue), 5%, 5%, 0.05) 100%);
+  border: 1px solid hsla(var(--primary-hue), 20%, 30%, 0.15);
+}
+
+/* Smooth transitions for theme changes */
+* {
+  transition: border-color 0.3s ease;
+}
+
+/* Cursor pointer for interactive elements */
+button,
+a,
+[role="button"],
+.cursor-pointer {
+  cursor: pointer;
+}
+
+button:disabled,
+a[disabled] {
+  cursor: not-allowed;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--muted);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--primary);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: hsl(var(--primary-hue), var(--primary-saturation), calc(var(--primary-lightness) * 0.8));
+}
+
+/* Line clamp utility */
+.line-clamp-3 {
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
