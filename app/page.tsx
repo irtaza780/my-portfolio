@@ -2,14 +2,30 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 import { Github, Linkedin, Mail, ExternalLink, Code2, Palette } from "lucide-react";
 import { ThemeToggle } from "@/components/theme-toggle";
 import { ColorPicker } from "@/components/color-picker";
 import { useTheme } from "@/components/theme-provider";
+import { useState, useEffect } from "react";
 
 export default function Home() {
   const { isLoaded } = useTheme();
+  const [currentImageIndex, setCurrentImageIndex] = useState(0);
+  
+  const profileImages = [
+    "/portfolio-image.jpg",
+    "/my-avatar.png"
+  ];
+
+  // Image flipping effect with more sophisticated timing
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCurrentImageIndex((prev) => (prev + 1) % profileImages.length);
+    }, 5000); // Change image every 5 seconds for better viewing
+
+    return () => clearInterval(interval);
+  }, [profileImages.length]);
 
   // Show loading spinner until theme is loaded
   if (!isLoaded) {
@@ -25,16 +41,6 @@ export default function Home() {
 
   const projects = [
     {
-      id: "bizb",
-      title: "BizB - Buy and Sell Online",
-      description: "A comprehensive e-commerce platform where users can buy and sell preloved clothes, featuring digital wardrobe management and express delivery options.",
-      tech: ["React Native", "Node.js", "MongoDB", "Express.js"],
-      link: "https://bizb.store/en",
-      type: "E-commerce Platform",
-      status: "Live",
-      image: "https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=800&h=600&fit=crop&crop=center"
-    },
-    {
       id: "lua-group",
       title: "Lua Group - Influencer Marketing",
       description: "Top influencer marketing platform with self-developed software for campaign optimization, connecting 10M+ influencers with brands worldwide.",
@@ -42,17 +48,27 @@ export default function Home() {
       link: "https://luagroup.com/en/",
       type: "Marketing Platform",
       status: "Live",
-      image: "https://images.unsplash.com/photo-1611224923853-80b023f02d71?w=800&h=600&fit=crop&crop=center"
+      image: "/project-images/lua.webp"
     },
     {
-      id: "united-market",
-      title: "United Market - Music Platform",
-      description: "AI-powered technology platform empowering musicians worldwide with collaboration tools, business management, and growth solutions.",
-      tech: ["React", "AI/ML", "Node.js", "MongoDB"],
-      link: "https://unitedmarket.com/",
-      type: "Music Platform",
+      id: "habily",
+      title: "Habily - Real Estate Platform",
+      description: "Intelligent real estate platform that accompanies first-time homebuyers through every step of the process, making home buying accessible and free of complications for everyone.",
+      tech: ["React", "TypeScript", "Node.js", "PostgreSQL"],
+      link: "https://habily.es/",
+      type: "Real Estate Platform",
       status: "Live",
-      image: "https://images.unsplash.com/photo-1493225457124-a3eb161ffa5f?w=800&h=600&fit=crop&crop=center"
+      image: "/project-images/habily.png"
+    },
+    {
+      id: "bizb",
+      title: "BizB - Buy and Sell Online",
+      description: "A comprehensive e-commerce platform where users can buy and sell preloved clothes, featuring digital wardrobe management and express delivery options.",
+      tech: ["React Native", "Node.js", "MongoDB", "Express.js"],
+      link: "https://bizb.store/en",
+      type: "E-commerce Platform",
+      status: "Live",
+      image: "/project-images/bizb.png"
     },
     {
       id: "ranchers-cafe",
@@ -62,17 +78,17 @@ export default function Home() {
       link: "https://play.google.com/store/apps/details?id=com.ranchers.customer&hl=en_CA&pli=1",
       type: "Mobile App",
       status: "Live",
-      image: "https://images.unsplash.com/photo-1571091718767-18b5b1457add?w=800&h=600&fit=crop&crop=center"
+      image: "/project-images/ranchers.webp"
     },
     {
-      id: "habily",
-      title: "Habily - Digital Wellness Platform",
-      description: "Innovative digital wellness platform focused on building healthy habits and improving lifestyle through personalized recommendations and tracking.",
-      tech: ["React", "TypeScript", "Node.js", "PostgreSQL"],
-      link: "https://habily.es/",
-      type: "Wellness Platform",
+      id: "united-market",
+      title: "United Market - Music Platform",
+      description: "AI-powered technology platform empowering musicians worldwide with collaboration tools, business management, and growth solutions.",
+      tech: ["React", "AI/ML", "Node.js", "MongoDB"],
+      link: "https://unitedmarket.com/",
+      type: "Music Platform",
       status: "Live",
-      image: "https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?w=800&h=600&fit=crop&crop=center"
+      image: "/project-images/united-market.png"
     }
   ];
 
@@ -209,7 +225,7 @@ export default function Home() {
         {/* Hero section */}
         <section className="min-h-screen flex items-center justify-center py-20">
           <div className="grid lg:grid-cols-2 gap-12 items-center">
-            {/* Profile image */}
+            {/* Profile image with flipping effect */}
             <motion.div
               initial={{ x: -100, opacity: 0 }}
               animate={{ x: 0, opacity: 1 }}
@@ -222,15 +238,71 @@ export default function Home() {
                   transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
                   className="absolute inset-0 rounded-full bg-gradient-to-r from-primary via-primary/50 to-transparent p-1"
                 />
-                <div className="glass-intense rounded-full p-4">
-            <Image
-                    src="/portfolio-image.jpg"
-                    alt="Irtaza - Full Stack Developer"
-                    width={400}
-                    height={400}
-                    className="rounded-full object-cover"
-                    priority
-                  />
+                <div className="glass-intense rounded-full p-4 relative overflow-hidden">
+                  <AnimatePresence mode="wait">
+                    <motion.div
+                      key={currentImageIndex}
+                      initial={{ 
+                        opacity: 0, 
+                        scale: 1.1,
+                        filter: "blur(4px)"
+                      }}
+                      animate={{ 
+                        opacity: 1, 
+                        scale: 1,
+                        filter: "blur(0px)"
+                      }}
+                      exit={{ 
+                        opacity: 0, 
+                        scale: 0.95,
+                        filter: "blur(4px)"
+                      }}
+                      transition={{ 
+                        duration: 1.2, 
+                        ease: [0.25, 0.46, 0.45, 0.94],
+                        opacity: { duration: 0.8 },
+                        scale: { duration: 1.2 },
+                        filter: { duration: 0.8 }
+                      }}
+                      className="w-[400px] h-[400px] relative"
+                    >
+                      <Image
+                        src={profileImages[currentImageIndex]}
+                        alt="Irtaza - Full Stack Developer"
+                        fill
+                        className="rounded-full object-cover"
+                        priority
+                      />
+                      
+                      {/* Subtle overlay animation */}
+                      <motion.div
+                        initial={{ opacity: 0 }}
+                        animate={{ opacity: [0, 0.1, 0] }}
+                        transition={{ 
+                          duration: 1.2,
+                          ease: "easeInOut"
+                        }}
+                        className="absolute inset-0 bg-gradient-to-tr from-primary/10 to-transparent rounded-full"
+                      />
+                    </motion.div>
+                  </AnimatePresence>
+                  
+                  {/* Image indicators */}
+                  <div className="absolute -bottom-2 left-1/2 transform -translate-x-1/2 flex gap-2">
+                    {profileImages.map((_, index) => (
+                      <motion.div
+                        key={index}
+                        className={`w-2 h-2 rounded-full transition-all duration-300 ${
+                          index === currentImageIndex 
+                            ? 'bg-primary scale-125' 
+                            : 'bg-primary/30 hover:bg-primary/50'
+                        }`}
+                        whileHover={{ scale: 1.2 }}
+                        onClick={() => setCurrentImageIndex(index)}
+                        style={{ cursor: 'pointer' }}
+                      />
+                    ))}
+                  </div>
                 </div>
               </div>
             </motion.div>

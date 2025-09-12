@@ -17,7 +17,7 @@ const projectData: { [key: string]: any } = {
     link: "https://bizb.store/en",
     type: "E-commerce Platform",
     status: "Live",
-    image: "https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=1200&h=800&fit=crop&crop=center",
+    image: "/project-images/bizb.png",
     year: "2023",
     team: "4 developers",
     duration: "6 months",
@@ -43,13 +43,13 @@ const projectData: { [key: string]: any } = {
     description: "Top influencer marketing platform with self-developed software for campaign optimization, connecting 10M+ influencers with brands worldwide.",
     fullDescription: "Lua Group is a cutting-edge influencer marketing platform that connects brands with over 10 million influencers worldwide. The platform features advanced analytics, campaign management tools, and AI-powered matching algorithms to ensure optimal brand-influencer partnerships.",
     tech: ["React", "Node.js", "PostgreSQL", "AI/ML", "Redis", "Docker"],
-    link: "https://luagroup.com/en/",
-    type: "Marketing Platform",
-    status: "Live",
-    image: "https://images.unsplash.com/photo-1611224923853-80b023f02d71?w=1200&h=800&fit=crop&crop=center",
-    year: "2023",
-    team: "8 developers",
-    duration: "12 months",
+      link: "https://luagroup.com/en/",
+      type: "Marketing Platform",
+      status: "Live",
+      image: "/project-images/lua.webp",
+      year: "2023",
+      team: "8 developers",
+      duration: "12 months",
     features: [
       "Influencer discovery and matching",
       "Campaign management dashboard",
@@ -65,6 +65,93 @@ const projectData: { [key: string]: any } = {
       "Implementing complex analytics algorithms",
       "Creating intuitive dashboard interfaces",
       "Ensuring data privacy and security"
+    ]
+  },
+  "habily": {
+    title: "Habily - Real Estate Platform",
+    description: "Intelligent real estate platform that accompanies first-time homebuyers through every step of the process, making home buying accessible and free of complications for everyone.",
+    fullDescription: "At Habily we combine more than 20 years of experience in the real estate sector. We know how difficult buying your first home can be, which is why we have created the first intelligent model that accompanies you at every step of the process. We want buying a home to be accessible and free of complications for everyone.",
+    tech: ["React", "TypeScript", "Node.js", "PostgreSQL", "AI/ML", "Maps API"],
+    link: "https://habily.es/",
+    type: "Real Estate Platform",
+    status: "Live",
+    image: "/project-images/habily.png",
+    year: "2023",
+    team: "6 developers",
+    duration: "10 months",
+    features: [
+      "Property search and filtering",
+      "Intelligent matching algorithms",
+      "Step-by-step buying guidance",
+      "Document management system",
+      "Mortgage calculator and advisor",
+      "Virtual property tours",
+      "Real-time market analytics",
+      "Legal assistance integration"
+    ],
+    challenges: [
+      "Integrating complex real estate APIs",
+      "Building intelligent recommendation system",
+      "Creating intuitive user onboarding flow",
+      "Implementing secure document handling"
+    ]
+  },
+  "united-market": {
+    title: "United Market - Music Platform",
+    description: "AI-powered technology platform empowering musicians worldwide with collaboration tools, business management, and growth solutions.",
+    fullDescription: "United Market is a comprehensive platform designed to empower musicians with cutting-edge tools for collaboration, business management, and career growth. The platform leverages AI to provide personalized recommendations and insights.",
+    tech: ["React", "AI/ML", "Node.js", "MongoDB", "WebRTC", "Stripe"],
+    link: "https://unitedmarket.com/",
+    type: "Music Platform",
+    status: "Live",
+    image: "/project-images/united-market.png",
+    year: "2023",
+    team: "5 developers",
+    duration: "8 months",
+    features: [
+      "Music collaboration tools",
+      "AI-powered recommendations",
+      "Business management dashboard",
+      "Revenue tracking and analytics",
+      "Social networking for musicians",
+      "Digital distribution platform",
+      "Copyright protection system",
+      "Live streaming capabilities"
+    ],
+    challenges: [
+      "Implementing real-time audio collaboration",
+      "Building AI recommendation algorithms",
+      "Creating secure payment processing",
+      "Optimizing for global music distribution"
+    ]
+  },
+  "ranchers-cafe": {
+    title: "Ranchers Cafe - Food Delivery",
+    description: "Mobile app for delicious burgers and pizza delivery, featuring fresh ingredients and innovative cooking techniques for the best dining experience.",
+    fullDescription: "Ranchers Cafe brings the best burgers and pizzas directly to your door through an intuitive mobile application. The app focuses on fresh ingredients, innovative cooking techniques, and exceptional customer service.",
+    tech: ["React Native", "Firebase", "Node.js", "Express.js", "Google Maps", "Stripe"],
+    link: "https://play.google.com/store/apps/details?id=com.ranchers.customer&hl=en_CA&pli=1",
+    type: "Mobile App",
+    status: "Live",
+    image: "/project-images/ranchers.webp",
+    year: "2023",
+    team: "4 developers",
+    duration: "5 months",
+    features: [
+      "Online food ordering system",
+      "Real-time order tracking",
+      "Multiple payment options",
+      "User reviews and ratings",
+      "Loyalty rewards program",
+      "Push notifications",
+      "GPS-based delivery tracking",
+      "Custom meal builder"
+    ],
+    challenges: [
+      "Implementing real-time GPS tracking",
+      "Optimizing for offline functionality",
+      "Creating smooth payment integration",
+      "Building efficient order management system"
     ]
   }
 };

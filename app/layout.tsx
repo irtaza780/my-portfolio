@@ -18,6 +18,11 @@ const jetBrainsMono = JetBrains_Mono({
 export const metadata: Metadata = {
   title: "Irtaza - Full Stack Developer",
   description: "Portfolio of Irtaza - Full Stack Developer & Software Engineer",
+  icons: {
+    icon: "/my-avatar.png",
+    shortcut: "/my-avatar.png",
+    apple: "/my-avatar.png",
+  },
 };
 
 export default function RootLayout({
