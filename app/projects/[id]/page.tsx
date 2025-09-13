@@ -1,5 +1,5 @@
 'use client';
-
+import { use } from 'react'
 import Image from "next/image";
 import Link from "next/link";
 import { motion } from "framer-motion";
@@ -156,8 +156,9 @@ const projectData: { [key: string]: any } = {
   }
 };
 
-export default function ProjectDetail({ params }: { params: { id: string } }) {
-  const project = projectData[params.id];
+export default function ProjectDetail({ params }: { params: Promise<{ id: string }> }) {
+  const { id } = use(params)
+  const project = projectData[id]
 
   if (!project) {
     return (
@@ -402,7 +403,7 @@ export default function ProjectDetail({ params }: { params: { id: string } }) {
                   <ExternalLink className="w-5 h-5 text-primary" />
                   <span className="font-medium">Visit Live Site</span>
                 </motion.a>
-                <motion.a
+                {/* <motion.a
                   href="#"
                   whileHover={{ scale: 1.02 }}
                   whileTap={{ scale: 0.98 }}
@@ -410,7 +411,7 @@ export default function ProjectDetail({ params }: { params: { id: string } }) {
                 >
                   <Github className="w-5 h-5 text-primary" />
                   <span className="font-medium">View Code</span>
-                </motion.a>
+                </motion.a> */}
               </div>
             </motion.div>
           </div>

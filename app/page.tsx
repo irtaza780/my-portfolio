@@ -12,7 +12,7 @@ import { useState, useEffect } from "react";
 export default function Home() {
   const { isLoaded } = useTheme();
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
-  
+
   const profileImages = [
     "/portfolio-image.jpg",
     "/my-avatar.png"
@@ -98,19 +98,19 @@ export default function Home() {
       <div className="fixed inset-0">
         {/* Base gradient */}
         <div className="absolute inset-0 bg-gradient-to-br from-primary/10 via-background to-secondary/15" />
-        
+
         {/* Noise texture overlay */}
-        <div 
+        <div
           className="absolute inset-0 opacity-20"
           style={{
             backgroundImage: `url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.03'%3E%3Ccircle cx='7' cy='7' r='1'/%3E%3Ccircle cx='27' cy='7' r='1'/%3E%3Ccircle cx='47' cy='7' r='1'/%3E%3Ccircle cx='7' cy='27' r='1'/%3E%3Ccircle cx='27' cy='27' r='1'/%3E%3Ccircle cx='47' cy='27' r='1'/%3E%3Ccircle cx='7' cy='47' r='1'/%3E%3Ccircle cx='27' cy='47' r='1'/%3E%3Ccircle cx='47' cy='47' r='1'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")`
           }}
         />
-        
+
         {/* Mesh gradient overlay */}
         <div className="absolute inset-0 bg-gradient-to-tr from-primary/5 via-transparent to-accent/5" />
       </div>
-      
+
       {/* Enhanced animated background elements */}
       <div className="fixed inset-0 overflow-hidden pointer-events-none">
         {/* Large floating orbs */}
@@ -140,7 +140,7 @@ export default function Home() {
           }}
           className="absolute bottom-1/4 right-1/4 w-[500px] h-[500px] bg-gradient-to-l from-secondary/15 to-accent/10 rounded-full blur-3xl"
         />
-        
+
         {/* Additional floating elements */}
         <motion.div
           animate={{
@@ -168,7 +168,7 @@ export default function Home() {
           }}
           className="absolute bottom-1/2 left-1/3 w-80 h-80 bg-gradient-to-tl from-accent/12 to-transparent rounded-full blur-2xl"
         />
-        
+
         {/* Geometric shapes */}
         <motion.div
           animate={{
@@ -212,7 +212,7 @@ export default function Home() {
               Irtaza
             </span>
           </motion.div>
-          
+
           <div className="flex items-center space-x-4">
             <ThemeToggle />
             <ColorPicker />
@@ -221,10 +221,10 @@ export default function Home() {
       </motion.header>
 
       {/* Main content */}
-      <main className="relative z-10 max-w-7xl mx-auto px-6">
+      <main className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6">
         {/* Hero section */}
-        <section className="min-h-screen flex items-center justify-center py-20">
-          <div className="grid lg:grid-cols-2 gap-12 items-center">
+        <section className="min-h-screen flex items-center justify-center py-8 sm:py-12 lg:py-20">
+          <div className="grid lg:grid-cols-2 gap-8 lg:gap-12 items-center w-full">
             {/* Profile image with flipping effect */}
             <motion.div
               initial={{ x: -100, opacity: 0 }}
@@ -238,33 +238,33 @@ export default function Home() {
                   transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
                   className="absolute inset-0 rounded-full bg-gradient-to-r from-primary via-primary/50 to-transparent p-1"
                 />
-                <div className="glass-intense rounded-full p-4 relative overflow-hidden">
+                <div className="glass-intense rounded-full p-2 sm:p-4 relative overflow-hidden">
                   <AnimatePresence mode="wait">
                     <motion.div
                       key={currentImageIndex}
-                      initial={{ 
-                        opacity: 0, 
+                      initial={{
+                        opacity: 0,
                         scale: 1.1,
                         filter: "blur(4px)"
                       }}
-                      animate={{ 
-                        opacity: 1, 
+                      animate={{
+                        opacity: 1,
                         scale: 1,
                         filter: "blur(0px)"
                       }}
-                      exit={{ 
-                        opacity: 0, 
+                      exit={{
+                        opacity: 0,
                         scale: 0.95,
                         filter: "blur(4px)"
                       }}
-                      transition={{ 
-                        duration: 1.2, 
+                      transition={{
+                        duration: 1.2,
                         ease: [0.25, 0.46, 0.45, 0.94],
                         opacity: { duration: 0.8 },
                         scale: { duration: 1.2 },
                         filter: { duration: 0.8 }
                       }}
-                      className="w-[400px] h-[400px] relative"
+                      className="w-[280px] h-[280px] sm:w-[350px] sm:h-[350px] lg:w-[400px] lg:h-[400px] relative"
                     >
                       <Image
                         src={profileImages[currentImageIndex]}
@@ -273,12 +273,12 @@ export default function Home() {
                         className="rounded-full object-cover"
                         priority
                       />
-                      
+
                       {/* Subtle overlay animation */}
                       <motion.div
                         initial={{ opacity: 0 }}
                         animate={{ opacity: [0, 0.1, 0] }}
-                        transition={{ 
+                        transition={{
                           duration: 1.2,
                           ease: "easeInOut"
                         }}
@@ -286,17 +286,16 @@ export default function Home() {
                       />
                     </motion.div>
                   </AnimatePresence>
-                  
+
                   {/* Image indicators */}
                   <div className="absolute -bottom-2 left-1/2 transform -translate-x-1/2 flex gap-2">
                     {profileImages.map((_, index) => (
                       <motion.div
                         key={index}
-                        className={`w-2 h-2 rounded-full transition-all duration-300 ${
-                          index === currentImageIndex 
-                            ? 'bg-primary scale-125' 
+                        className={`w-2 h-2 rounded-full transition-all duration-300 ${index === currentImageIndex
+                            ? 'bg-primary scale-125'
                             : 'bg-primary/30 hover:bg-primary/50'
-                        }`}
+                          }`}
                         whileHover={{ scale: 1.2 }}
                         onClick={() => setCurrentImageIndex(index)}
                         style={{ cursor: 'pointer' }}
@@ -312,14 +311,14 @@ export default function Home() {
               initial={{ x: 100, opacity: 0 }}
               animate={{ x: 0, opacity: 1 }}
               transition={{ duration: 0.8, delay: 0.2 }}
-              className="space-y-8 order-1 lg:order-2"
+              className="space-y-6 sm:space-y-8 order-1 lg:order-2 text-center lg:text-left"
             >
-              <div className="space-y-4">
+              <div className="space-y-3 sm:space-y-4">
                 <motion.h1
                   initial={{ y: 50, opacity: 0 }}
                   animate={{ y: 0, opacity: 1 }}
                   transition={{ duration: 0.8, delay: 0.4 }}
-                  className="text-5xl lg:text-7xl font-bold leading-tight"
+                  className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold leading-tight"
                 >
                   Full Stack
                   <br />
@@ -327,14 +326,14 @@ export default function Home() {
                     Developer
                   </span>
                 </motion.h1>
-                
+
                 <motion.p
                   initial={{ y: 50, opacity: 0 }}
                   animate={{ y: 0, opacity: 1 }}
                   transition={{ duration: 0.8, delay: 0.6 }}
-                  className="text-xl text-muted-foreground max-w-2xl"
+                  className="text-base sm:text-lg lg:text-xl text-muted-foreground max-w-2xl mx-auto lg:mx-0"
                 >
-                  Crafting exceptional digital experiences with modern technologies. 
+                  Crafting exceptional digital experiences with modern technologies.
                   Passionate about creating scalable, user-centric applications that make a difference.
                 </motion.p>
               </div>
@@ -344,23 +343,23 @@ export default function Home() {
                 initial={{ y: 50, opacity: 0 }}
                 animate={{ y: 0, opacity: 1 }}
                 transition={{ duration: 0.8, delay: 0.8 }}
-                className="flex flex-wrap gap-4"
+                className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center lg:justify-start"
               >
                 <motion.button
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
-                  className="px-8 py-4 rounded-full font-medium bg-primary text-primary-foreground hover:bg-primary/90 transition-colors flex items-center gap-2 border border-primary"
+                  className="px-6 sm:px-8 py-3 sm:py-4 rounded-full font-medium bg-primary text-primary-foreground hover:bg-primary/90 transition-colors flex items-center justify-center gap-2 border border-primary text-sm sm:text-base"
                 >
-                  <Code2 className="w-5 h-5" />
+                  <Code2 className="w-4 h-4 sm:w-5 sm:h-5" />
                   View Projects
                 </motion.button>
-                
+
                 <motion.button
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
-                  className="glass px-8 py-4 rounded-full font-medium hover:bg-accent transition-colors flex items-center gap-2"
+                  className="glass px-6 sm:px-8 py-3 sm:py-4 rounded-full font-medium hover:bg-accent transition-colors flex items-center justify-center gap-2 text-sm sm:text-base"
                 >
-                  <Mail className="w-5 h-5" />
+                  <Mail className="w-4 h-4 sm:w-5 sm:h-5" />
                   Get In Touch
                 </motion.button>
               </motion.div>
@@ -370,7 +369,7 @@ export default function Home() {
                 initial={{ y: 50, opacity: 0 }}
                 animate={{ y: 0, opacity: 1 }}
                 transition={{ duration: 0.8, delay: 1 }}
-                className="flex items-center gap-4"
+                className="flex flex-col sm:flex-row items-center gap-3 sm:gap-4"
               >
                 <span className="text-sm text-muted-foreground">Follow me:</span>
                 <div className="flex gap-3">
@@ -382,19 +381,19 @@ export default function Home() {
                     <motion.a
                       key={index}
                       href={social.href}
-            target="_blank"
-            rel="noopener noreferrer"
+                      target="_blank"
+                      rel="noopener noreferrer"
                       whileHover={{ scale: 1.1, y: -2 }}
                       whileTap={{ scale: 0.95 }}
-                      className="glass p-3 rounded-full hover:bg-primary hover:text-primary-foreground transition-colors"
+                      className="glass p-2.5 sm:p-3 rounded-full hover:bg-primary hover:text-primary transition-colors"
                     >
-                      <social.icon className="w-5 h-5" />
+                      <social.icon className="w-4 h-4 sm:w-5 sm:h-5" />
                     </motion.a>
                   ))}
                 </div>
               </motion.div>
             </motion.div>
-        </div>
+          </div>
         </section>
 
         {/* Skills section */}
@@ -412,7 +411,7 @@ export default function Home() {
                 Technologies and tools I use to bring ideas to life
               </p>
             </div>
-            
+
             <div className="flex flex-wrap justify-center gap-4">
               {skills.map((skill, index) => (
                 <motion.div
@@ -445,7 +444,7 @@ export default function Home() {
               A showcase of my recent work and personal projects
             </p>
           </div>
-          
+
           <div className="grid md:grid-cols-2 gap-8">
             {projects.map((project, index) => (
               <motion.div
@@ -488,12 +487,12 @@ export default function Home() {
                           </h3>
                         </div>
                       </div>
-                      
+
                       {/* Description */}
                       <p className="text-muted-foreground leading-relaxed line-clamp-3">
                         {project.description}
                       </p>
-                      
+
                       {/* Tech Stack */}
                       <div className="space-y-3">
                         <h4 className="text-sm font-semibold text-foreground">Tech Stack</h4>
@@ -508,23 +507,23 @@ export default function Home() {
                           ))}
                         </div>
                       </div>
-                      
+
                       {/* Actions */}
                       <div className="pt-4 border-t border-border/50">
                         <div className="flex items-center justify-between">
                           <span className="text-sm text-muted-foreground">View Details</span>
                           <div className="flex items-center gap-3">
-                            <motion.a
-                              href={project.link}
-                              target="_blank"
-                              rel="noopener noreferrer"
-                              onClick={(e) => e.stopPropagation()}
+                            <motion.button
+                              onClick={(e) => {
+                                e.stopPropagation();
+                                window.open(project.link, '_blank', 'noopener,noreferrer');
+                              }}
                               whileHover={{ scale: 1.1 }}
                               whileTap={{ scale: 0.95 }}
-                              className="p-2 glass-card rounded-full hover:bg-primary hover:text-primary-foreground transition-colors"
+                              className="p-2 glass-card rounded-full hover:bg-primary hover:text-primary transition-colors"
                             >
                               <ExternalLink className="w-4 h-4" />
-                            </motion.a>
+                            </motion.button>
                           </div>
                         </div>
                       </div>
@@ -556,7 +555,7 @@ export default function Home() {
             >
               <h3 className="text-3xl font-bold mb-6">Let's Work Together</h3>
               <p className="text-muted-foreground mb-8 max-w-2xl mx-auto text-lg">
-                I'm always interested in hearing about new projects and opportunities. 
+                I'm always interested in hearing about new projects and opportunities.
                 Let's create something amazing together!
               </p>
               <motion.button
@@ -579,11 +578,11 @@ export default function Home() {
                     Irtaza
                   </h4>
                   <p className="text-muted-foreground leading-relaxed max-w-md">
-                    Full-stack developer passionate about creating exceptional digital experiences. 
+                    Full-stack developer passionate about creating exceptional digital experiences.
                     Specializing in modern web technologies and scalable solutions.
                   </p>
                 </div>
-                
+
                 {/* Social Links */}
                 <div className="flex items-center gap-4">
                   <span className="text-sm font-medium">Connect:</span>
@@ -600,7 +599,7 @@ export default function Home() {
                         rel="noopener noreferrer"
                         whileHover={{ scale: 1.1, y: -2 }}
                         whileTap={{ scale: 0.95 }}
-                        className="glass-card p-3 rounded-full hover:bg-primary hover:text-primary-foreground transition-colors"
+                        className="glass-card p-3 rounded-full hover:bg-primary hover:text-primary transition-colors"
                         title={social.label}
                       >
                         <social.icon className="w-5 h-5" />
@@ -611,7 +610,7 @@ export default function Home() {
               </div>
 
               {/* Quick Links */}
-              <div className="space-y-6">
+              {/* <div className="space-y-6">
                 <h5 className="font-semibold text-foreground">Quick Links</h5>
                 <ul className="space-y-3">
                   {[
@@ -621,7 +620,7 @@ export default function Home() {
                     { name: "Contact", href: "#contact" }
                   ].map((link) => (
                     <li key={link.name}>
-                      <a 
+                      <a
                         href={link.href}
                         className="text-muted-foreground hover:text-primary transition-colors text-sm"
                       >
@@ -630,7 +629,7 @@ export default function Home() {
                     </li>
                   ))}
                 </ul>
-              </div>
+              </div> */}
 
               {/* Tech Stack */}
               <div className="space-y-6">
@@ -655,9 +654,9 @@ export default function Home() {
               <div className="text-sm text-muted-foreground">
                 © {new Date().getFullYear()} Irtaza. All rights reserved.
               </div>
-              <div className="flex items-center gap-6 text-sm text-muted-foreground">
+              <div className="sm:flex items-center gap-6 text-sm text-muted-foreground">
                 <span>Built with Next.js & Tailwind CSS</span>
-                <span className="flex items-center gap-1">
+                <span className="flex items-center gap-1 mt-3 sm:mt-0">
                   Made with <span className="text-red-500">♥</span> in Pakistan
                 </span>
               </div>
