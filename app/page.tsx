@@ -3,7 +3,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { motion } from "framer-motion";
-import { Github, Linkedin, Mail, ExternalLink, Code2, Palette } from "lucide-react";
+import { Github, Linkedin, Mail, ExternalLink, Code2, Palette, Phone, Download } from "lucide-react";
 import { ThemeToggle } from "@/components/theme-toggle";
 import { ColorPicker } from "@/components/color-picker";
 import { useTheme } from "@/components/theme-provider";
@@ -11,6 +11,13 @@ import { MyAvatarSvg } from "@/components/dynamic-svgs";
 
 export default function Home() {
   const { isLoaded, primaryColor } = useTheme();
+
+  const scrollToProjects = () => {
+    const projectsSection = document.getElementById('projects');
+    if (projectsSection) {
+      projectsSection.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
 
   // Show loading spinner until theme is loaded
   if (!isLoaded) {
@@ -303,6 +310,7 @@ export default function Home() {
                 className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center lg:justify-start"
               >
                 <motion.button
+                  onClick={scrollToProjects}
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
                   className="px-6 sm:px-8 py-3 sm:py-4 rounded-full font-medium bg-primary text-primary-foreground hover:bg-primary/90 transition-colors flex items-center justify-center gap-2 border border-primary text-sm sm:text-base"
@@ -311,14 +319,26 @@ export default function Home() {
                   View Projects
                 </motion.button>
 
-                <motion.button
+                <motion.a
+                  href="mailto:irtaza780@gmail.com"
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
                   className="glass px-6 sm:px-8 py-3 sm:py-4 rounded-full font-medium hover:bg-accent transition-colors flex items-center justify-center gap-2 text-sm sm:text-base"
                 >
                   <Mail className="w-4 h-4 sm:w-5 sm:h-5" />
                   Get In Touch
-                </motion.button>
+                </motion.a>
+
+                <motion.a
+                  href="/resume/SYED__MUHAMMAD_IRTAZA_SOFTWARE_ENGINEER_RESUME.pdf"
+                  download="Syed_Muhammad_Irtaza_Resume.pdf"
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.95 }}
+                  className="glass px-6 sm:px-8 py-3 sm:py-4 rounded-full font-medium hover:bg-accent transition-colors flex items-center justify-center gap-2 text-sm sm:text-base"
+                >
+                  <Download className="w-4 h-4 sm:w-5 sm:h-5" />
+                  Download Resume
+                </motion.a>
               </motion.div>
 
               {/* Social links */}
@@ -333,7 +353,8 @@ export default function Home() {
                   {[
                     { icon: Github, href: "https://github.com/irtaza780" },
                     { icon: Linkedin, href: "https://www.linkedin.com/in/syed-muhammad-irtaza-211156181/" },
-                    { icon: Mail, href: "mailto:irtaza780@gmail.com" }
+                    { icon: Mail, href: "mailto:irtaza780@gmail.com" },
+                    { icon: Phone, href: "tel:+12633552859" }
                   ].map((social, index) => (
                     <motion.a
                       key={index}
@@ -389,6 +410,7 @@ export default function Home() {
 
         {/* Projects section */}
         <motion.section
+          id="projects"
           initial={{ y: 100, opacity: 0 }}
           whileInView={{ y: 0, opacity: 1 }}
           transition={{ duration: 0.8 }}
@@ -421,7 +443,7 @@ export default function Home() {
                         src={project.image}
                         alt={project.title}
                         fill
-                        className="object-cover group-hover:scale-105 transition-transform duration-300"
+                        className="object-cover"
                       />
                       <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent" />
                       <div className="absolute top-4 right-4">
@@ -515,13 +537,14 @@ export default function Home() {
                 I'm always interested in hearing about new projects and opportunities.
                 Let's create something amazing together!
               </p>
-              <motion.button
+              <motion.a
+                href="mailto:irtaza780@gmail.com"
                 whileHover={{ scale: 1.05, y: -2 }}
                 whileTap={{ scale: 0.95 }}
                 className="px-10 py-4 rounded-full font-medium bg-primary text-primary-foreground hover:bg-primary/90 transition-all duration-300 shadow-lg hover:shadow-primary/25"
               >
                 Start a Conversation
-              </motion.button>
+              </motion.a>
             </motion.div>
           </div>
 
@@ -541,28 +564,43 @@ export default function Home() {
                 </div>
 
                 {/* Social Links */}
-                <div className="flex items-center gap-4">
-                  <span className="text-sm font-medium">Connect:</span>
-                  <div className="flex gap-3">
-                    {[
-                      { icon: Github, href: "https://github.com/irtaza780", label: "GitHub" },
-                      { icon: Linkedin, href: "https://www.linkedin.com/in/syed-muhammad-irtaza-211156181/", label: "LinkedIn" },
-                      { icon: Mail, href: "mailto:irtaza780@gmail.com", label: "Email" }
-                    ].map((social, index) => (
-                      <motion.a
-                        key={index}
-                        href={social.href}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        whileHover={{ scale: 1.1, y: -2 }}
-                        whileTap={{ scale: 0.95 }}
-                        className="glass-card p-3 rounded-full hover:bg-primary hover:text-primary transition-colors"
-                        title={social.label}
-                      >
-                        <social.icon className="w-5 h-5" />
-                      </motion.a>
-                    ))}
+                <div className="space-y-4">
+                  <div className="flex items-center gap-4">
+                    <span className="text-sm font-medium">Connect:</span>
+                    <div className="flex gap-3">
+                      {[
+                        { icon: Github, href: "https://github.com/irtaza780", label: "GitHub" },
+                        { icon: Linkedin, href: "https://www.linkedin.com/in/syed-muhammad-irtaza-211156181/", label: "LinkedIn" },
+                        { icon: Mail, href: "mailto:irtaza780@gmail.com", label: "Email" },
+                        { icon: Phone, href: "tel:+12633552859", label: "Phone" }
+                      ].map((social, index) => (
+                        <motion.a
+                          key={index}
+                          href={social.href}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          whileHover={{ scale: 1.1, y: -2 }}
+                          whileTap={{ scale: 0.95 }}
+                          className="glass-card p-3 rounded-full hover:bg-primary hover:text-primary transition-colors"
+                          title={social.label}
+                        >
+                          <social.icon className="w-5 h-5" />
+                        </motion.a>
+                      ))}
+                    </div>
                   </div>
+                  
+                  {/* Resume Download */}
+                  <motion.a
+                    href="/resume/SYED__MUHAMMAD_IRTAZA_SOFTWARE_ENGINEER_RESUME.pdf"
+                    download="Syed_Muhammad_Irtaza_Resume.pdf"
+                    whileHover={{ scale: 1.05, y: -2 }}
+                    whileTap={{ scale: 0.95 }}
+                    className="inline-flex items-center gap-2 glass-card px-4 py-2 rounded-full hover:bg-primary hover:text-primary transition-colors text-sm font-medium"
+                  >
+                    <Download className="w-4 h-4" />
+                    Download Resume
+                  </motion.a>
                 </div>
               </div>
 
