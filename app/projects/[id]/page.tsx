@@ -13,7 +13,7 @@ const projectData: { [key: string]: any } = {
     title: "BizB - Buy and Sell Online",
     description: "A comprehensive e-commerce platform where users can buy and sell preloved clothes, featuring digital wardrobe management and express delivery options.",
     fullDescription: "BizB revolutionizes the way people buy and sell preloved clothing by creating a digital marketplace that emphasizes sustainability and style. The platform features advanced search capabilities, secure payment processing, and a unique digital wardrobe management system that helps users organize their clothing items efficiently.",
-    tech: ["React Native", "Node.js", "MongoDB", "Express.js", "Stripe", "AWS"],
+    tech: ["Next.js", "Node.js", "GraphQL", "MongoDB", "Stripe Payments", "Google Cloud"],
     link: "https://bizb.store/en",
     type: "E-commerce Platform",
     status: "Live",
@@ -25,82 +25,82 @@ const projectData: { [key: string]: any } = {
       "User authentication and profile management",
       "Product listing and search functionality",
       "Secure payment processing with Stripe",
-      "Real-time chat between buyers and sellers",
       "Digital wardrobe management system",
       "Express delivery tracking",
       "Review and rating system",
-      "Push notifications for mobile app"
+      "Push notifications for mobile app",
+      "Advanced search capabilities"
     ],
     challenges: [
-      "Implementing real-time chat with Socket.io",
-      "Optimizing image upload and processing",
-      "Creating a responsive design for all devices",
-      "Integrating multiple payment gateways"
+      "Migrating project from Webpack to SWC and upgrading to Next.js 13",
+      "Using MongoDB transactions to fix cart syncing issues",
+      "Implementing Next.js Image Optimization API",
+      "Refactoring codebase to TypeScript"
     ]
   },
   "lua-group": {
     title: "Lua Group - Influencer Marketing",
     description: "Top influencer marketing platform with self-developed software for campaign optimization, connecting 10M+ influencers with brands worldwide.",
     fullDescription: "Lua Group is a cutting-edge influencer marketing platform that connects brands with over 10 million influencers worldwide. The platform features advanced analytics, campaign management tools, and AI-powered matching algorithms to ensure optimal brand-influencer partnerships.",
-    tech: ["React", "Node.js", "PostgreSQL", "AI/ML", "Redis", "Docker"],
+    tech: ["React", "Vite", "Next.js", "Monorepo", "Node.js", "PostgreSQL", "Redis", "Firebase"],
       link: "https://luagroup.com/en/",
       type: "Marketing Platform",
       status: "Live",
       image: "/project-images/lua.webp",
       year: "2023",
       team: "8 developers",
-      duration: "12 months",
+      duration: "Ongoing",
     features: [
-      "Influencer discovery and matching",
+      "Creating marketing campaigns",
+      "Client and user invoices and invoice reconciliation",
+      "Scraping users data from Instagram and TikTok",
+      "Influencer discovery and matching - large database of influencers with multiple complex filters",
+      "Multi-language support (EN and ES)",
+      "White labelling to give to specific clients with their custom brand colors",
       "Campaign management dashboard",
-      "Analytics and reporting tools",
-      "Payment processing for influencers",
-      "Content approval workflows",
-      "Performance tracking and ROI analysis",
-      "Multi-language support",
-      "API for third-party integrations"
+      "Analytics and reporting tools"
     ],
     challenges: [
-      "Scaling to handle millions of users",
-      "Implementing complex analytics algorithms",
-      "Creating intuitive dashboard interfaces",
-      "Ensuring data privacy and security"
+      "Cut S3 storage costs by 50% by redesigning the media architecture: segmented media into prod/staging/dev buckets, enabled versioning and lifecycle rules for automated cleanup, activated access logging to analyze usage patterns, and adopted Intelligent-Tiering for infrequently accessed assets",
+      "Refactored monolithic APIs into modular endpoints, replacing Sequelize with raw queries to reduce query time from 6 seconds to 1.2 seconds",
+      "Revamped portal UI and filters for better UX and performance; added debounce + cancellation for rapid API calls",
+      "Introduced a dynamic Quick Payment feature allowing direct payments to creators reducing time to pay creators by 10%"
     ]
   },
   "habily": {
     title: "Habily - Real Estate Platform",
     description: "Intelligent real estate platform that accompanies first-time homebuyers through every step of the process, making home buying accessible and free of complications for everyone.",
     fullDescription: "At Habily we combine more than 20 years of experience in the real estate sector. We know how difficult buying your first home can be, which is why we have created the first intelligent model that accompanies you at every step of the process. We want buying a home to be accessible and free of complications for everyone.",
-    tech: ["React", "TypeScript", "Node.js", "PostgreSQL", "AI/ML", "Maps API"],
+    tech: ["Next.js", "TypeScript", "NestJS", "PostgreSQL", "ScrapingBee", "Flowise"],
     link: "https://habily.es/",
     type: "Real Estate Platform",
     status: "Live",
     image: "/project-images/habily.png",
     year: "2023",
-    team: "6 developers",
+    team: "2 developers",
     duration: "10 months",
     features: [
-      "Property search and filtering",
-      "Intelligent matching algorithms",
+      "Revamped data scraping logic using ScrapingBee, adding fallbacks to ensure availability and reliability of rental listings",
+      "Created advanced filters for property search (price, size, type, etc.), enabling targeted user experiences",
+      "Optimized query performance by redesigning price maps and reducing redundant scraping operations",
+      "Built Flowise AI agents that generate contextual reports from property URLs",
+      "Chat bot to suggest properties based on user affinity",
       "Step-by-step buying guidance",
       "Document management system",
-      "Mortgage calculator and advisor",
-      "Virtual property tours",
-      "Real-time market analytics",
-      "Legal assistance integration"
+      "Real-time market analytics"
     ],
     challenges: [
-      "Integrating complex real estate APIs",
-      "Building intelligent recommendation system",
-      "Creating intuitive user onboarding flow",
-      "Implementing secure document handling"
+      "Revamped data scraping logic using ScrapingBee, adding fallbacks to ensure availability and reliability of rental listings",
+      "Created advanced filters for property search (price, size, type, etc.), enabling targeted user experiences",
+      "Optimized query performance by redesigning price maps and reducing redundant scraping operations",
+      "Built Flowise AI agents that generate contextual reports from property URLs"
     ]
   },
   "united-market": {
     title: "United Market - Music Platform",
     description: "AI-powered technology platform empowering musicians worldwide with collaboration tools, business management, and growth solutions.",
     fullDescription: "United Market is a comprehensive platform designed to empower musicians with cutting-edge tools for collaboration, business management, and career growth. The platform leverages AI to provide personalized recommendations and insights.",
-    tech: ["React", "AI/ML", "Node.js", "MongoDB", "WebRTC", "Stripe"],
+    tech: ["React", "AI/ML", "Node.js", "MongoDB", "WebRTC", "Stripe", "Kafka"],
     link: "https://unitedmarket.com/",
     type: "Music Platform",
     status: "Live",
@@ -129,7 +129,7 @@ const projectData: { [key: string]: any } = {
     title: "Ranchers Cafe - Food Delivery",
     description: "Mobile app for delicious burgers and pizza delivery, featuring fresh ingredients and innovative cooking techniques for the best dining experience.",
     fullDescription: "Ranchers Cafe brings the best burgers and pizzas directly to your door through an intuitive mobile application. The app focuses on fresh ingredients, innovative cooking techniques, and exceptional customer service.",
-    tech: ["React Native", "Firebase", "Node.js", "Express.js", "Google Maps", "Stripe"],
+    tech: ["React Native", "Firebase", "Node.js", "Express.js", "Google Maps", "Stripe", "GraphQL", "Google Maps Geocoding"],
     link: "https://play.google.com/store/apps/details?id=com.ranchers.customer&hl=en_CA&pli=1",
     type: "Mobile App",
     status: "Live",
@@ -137,6 +137,7 @@ const projectData: { [key: string]: any } = {
     year: "2023",
     team: "4 developers",
     duration: "5 months",
+    isApp: true,
     features: [
       "Online food ordering system",
       "Real-time order tracking",
@@ -401,7 +402,7 @@ export default function ProjectDetail({ params }: { params: Promise<{ id: string
                   className="flex items-center gap-3 w-full p-3 glass-section rounded-xl hover:bg-primary/10 transition-colors"
                 >
                   <ExternalLink className="w-5 h-5 text-primary" />
-                  <span className="font-medium">Visit Live Site</span>
+                  <span className="font-medium">{project.isApp ? "Download App" : "Visit Live Site"}</span>
                 </motion.a>
                 {/* <motion.a
                   href="#"
