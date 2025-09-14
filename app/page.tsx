@@ -2,30 +2,15 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion } from "framer-motion";
 import { Github, Linkedin, Mail, ExternalLink, Code2, Palette } from "lucide-react";
 import { ThemeToggle } from "@/components/theme-toggle";
 import { ColorPicker } from "@/components/color-picker";
 import { useTheme } from "@/components/theme-provider";
-import { useState, useEffect } from "react";
+import { MyAvatarSvg } from "@/components/dynamic-svgs";
 
 export default function Home() {
-  const { isLoaded } = useTheme();
-  const [currentImageIndex, setCurrentImageIndex] = useState(0);
-
-  const profileImages = [
-    "/portfolio-image.jpg",
-    "/my-avatar.png"
-  ];
-
-  // Image flipping effect with more sophisticated timing
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setCurrentImageIndex((prev) => (prev + 1) % profileImages.length);
-    }, 5000); // Change image every 5 seconds for better viewing
-
-    return () => clearInterval(interval);
-  }, [profileImages.length]);
+  const { isLoaded, primaryColor } = useTheme();
 
   // Show loading spinner until theme is loaded
   if (!isLoaded) {
@@ -225,7 +210,7 @@ export default function Home() {
         {/* Hero section */}
         <section className="min-h-screen flex items-center justify-center py-8 sm:py-12 lg:py-20">
           <div className="grid lg:grid-cols-2 gap-8 lg:gap-12 items-center w-full">
-            {/* Profile image with flipping effect */}
+            {/* Profile avatar with dynamic SVG */}
             <motion.div
               initial={{ x: -100, opacity: 0 }}
               animate={{ x: 0, opacity: 1 }}
@@ -239,69 +224,41 @@ export default function Home() {
                   className="absolute inset-0 rounded-full bg-gradient-to-r from-primary via-primary/50 to-transparent p-1"
                 />
                 <div className="glass-intense rounded-full p-2 sm:p-4 relative overflow-hidden">
-                  <AnimatePresence mode="wait">
+                  <motion.div
+                    initial={{
+                      opacity: 0,
+                      scale: 1.1,
+                      filter: "blur(4px)"
+                    }}
+                    animate={{
+                      opacity: 1,
+                      scale: 1,
+                      filter: "blur(0px)"
+                    }}
+                    transition={{
+                      duration: 1.2,
+                      ease: [0.25, 0.46, 0.45, 0.94],
+                      opacity: { duration: 0.8 },
+                      scale: { duration: 1.2 },
+                      filter: { duration: 0.8 }
+                    }}
+                    className="w-[280px] h-[280px] sm:w-[350px] sm:h-[350px] lg:w-[400px] lg:h-[400px] relative overflow-hidden rounded-full"
+                  >
+                    <div className="w-full h-full flex items-center justify-center">
+                      <MyAvatarSvg primaryColor={primaryColor} />
+                    </div>
+
+                    {/* Subtle overlay animation */}
                     <motion.div
-                      key={currentImageIndex}
-                      initial={{
-                        opacity: 0,
-                        scale: 1.1,
-                        filter: "blur(4px)"
-                      }}
-                      animate={{
-                        opacity: 1,
-                        scale: 1,
-                        filter: "blur(0px)"
-                      }}
-                      exit={{
-                        opacity: 0,
-                        scale: 0.95,
-                        filter: "blur(4px)"
-                      }}
+                      initial={{ opacity: 0 }}
+                      animate={{ opacity: [0, 0.1, 0] }}
                       transition={{
                         duration: 1.2,
-                        ease: [0.25, 0.46, 0.45, 0.94],
-                        opacity: { duration: 0.8 },
-                        scale: { duration: 1.2 },
-                        filter: { duration: 0.8 }
+                        ease: "easeInOut"
                       }}
-                      className="w-[280px] h-[280px] sm:w-[350px] sm:h-[350px] lg:w-[400px] lg:h-[400px] relative"
-                    >
-                      <Image
-                        src={profileImages[currentImageIndex]}
-                        alt="Irtaza - Full Stack Developer"
-                        fill
-                        className="rounded-full object-cover"
-                        priority
-                      />
-
-                      {/* Subtle overlay animation */}
-                      <motion.div
-                        initial={{ opacity: 0 }}
-                        animate={{ opacity: [0, 0.1, 0] }}
-                        transition={{
-                          duration: 1.2,
-                          ease: "easeInOut"
-                        }}
-                        className="absolute inset-0 bg-gradient-to-tr from-primary/10 to-transparent rounded-full"
-                      />
-                    </motion.div>
-                  </AnimatePresence>
-
-                  {/* Image indicators */}
-                  <div className="absolute -bottom-2 left-1/2 transform -translate-x-1/2 flex gap-2">
-                    {profileImages.map((_, index) => (
-                      <motion.div
-                        key={index}
-                        className={`w-2 h-2 rounded-full transition-all duration-300 ${index === currentImageIndex
-                            ? 'bg-primary scale-125'
-                            : 'bg-primary/30 hover:bg-primary/50'
-                          }`}
-                        whileHover={{ scale: 1.2 }}
-                        onClick={() => setCurrentImageIndex(index)}
-                        style={{ cursor: 'pointer' }}
-                      />
-                    ))}
-                  </div>
+                      className="absolute inset-0 bg-gradient-to-tr from-primary/10 to-transparent rounded-full"
+                    />
+                  </motion.div>
                 </div>
               </div>
             </motion.div>
