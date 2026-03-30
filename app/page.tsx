@@ -643,6 +643,11 @@ export default function Home() {
                   ))}
                 </ul>
               </div>
+
+              <div>
+                <h5 className="font-semibold text-foreground">Quick Links</h5>
+                
+              </div>
             </div>
 
             {/* Bottom Bar */}
@@ -653,7 +658,7 @@ export default function Home() {
               <div className="sm:flex items-center gap-6 text-sm text-muted-foreground">
                 <span>Built with Next.js & Tailwind CSS</span>
                 <span className="flex items-center gap-1 mt-3 sm:mt-0">
-                  Made with <span className="text-red-500">♥</span> in Pakistan
+                  {/* Made with <span className="text-red-500">♥</span> in Pakistan */}
                 </span>
               </div>
             </div>
